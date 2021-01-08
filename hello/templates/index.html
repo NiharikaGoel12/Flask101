@@ -3,13 +3,9 @@
 
         <form action="/register" method="post">
                 <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
-                <select name="sport">
-                        <option disabled selected value="">Sport</option>
-                        {% for sport in sports_list %}
-                                <option value="{{ sport }}">{{ sport }}</option>
-                        {% endfor %}
-
-                </select>
+                {% for sport in sports_list %}
+                    <input name="sport" type="checkbox" value="{{ sport }}"> {{ sport }}
+                {% endfor %}
                 <input type="submit" value="Register">
         </form>
 {% endblock %}
