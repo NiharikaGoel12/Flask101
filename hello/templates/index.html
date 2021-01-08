@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
 
-        <form action="/" method="post">
+        <form action="/register" method="post">
                 <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
-                <input type="submit">
+                <select name="sport">
+                        <option disabled selected value="">Sport</option>
+                        {% for sport in sports_list %}
+                                <option value="{{ sport }}">{{ sport }}</option>
+                        {% endfor %}
+
+                </select>
+                <input type="submit" value="Register">
         </form>
 {% endblock %}
