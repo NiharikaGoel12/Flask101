@@ -1,11 +1,11 @@
 from flask import Flask, redirect, render_template, request
-import os.path
-# from cs50 import SQL
+import os
+
 import sqlite3
 app = Flask(__name__)
 
-BASE_DIR = os.path.dirname("/Users/ua741/niharika/Flask101/hello")
-db_path = os.path.join(BASE_DIR, "hello/registration.db")
+BASE_DIR = os.path.abspath(os.getcwd())
+db_path = os.path.join(BASE_DIR, "registration.db")
 conn = sqlite3.connect(db_path)
 c = conn.cursor()
 c.execute('''CREATE TABLE student_activity
@@ -39,7 +39,6 @@ def register():
         return render_template("failure.html")
 
     c.execute("INSERT INTO student_activity (name, sport) VALUES (?, ?) ", (name, sport_name))
-    conn.commit()
     return redirect("/registrants")
 
 
