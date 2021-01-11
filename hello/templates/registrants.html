@@ -1,23 +1,28 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h1>Registrants</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Sport</th>
-            </tr>
-        </thead>
-        <body>
-            {% for name in registrants %}
-                <tr>
-                    <td>{{ name }}</td>
-                    <td>{{ registrants[name] }}</td>
-                </tr>
-            {% endfor %}
-        </body>
-    </table>
-
-
+<h1>Registrants</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Sport</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for registrant in registrants %}
+    <tr>
+        <td>{{ registrant[1] }}</td>
+        <td>{{ registrant[2] }}</td>
+        <td>
+            <form action="/deregister" method="post">
+                <input name="id" type="hidden" value="{{ registrant[0] }}">
+                <input type="submit" value="Deregister">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
